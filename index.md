@@ -25,24 +25,24 @@
 
 <figure class="two-column">
 <figcaption>Figure 1. Analysis A (aspirin before antiplatelet when concurrent)</figcaption>
-<img class="a" src="https://rw251.github.io/process-mining/images/aspirin_before_ap.png" />
+<img class="a" src="images/aspirin_before_ap.png" />
 </figure>
 
 <figure class="two-column">
 <figcaption>Figure 2. Analysis B  (antiplatelet before aspirin when concurrent)</figcaption>
-<img class="a" src="https://rw251.github.io/process-mining/images/ap_before_aspirin.png" />
+<img class="a" src="images/ap_before_aspirin.png" />
 </figure>
 
 #### 1.2.1 Filter to pathways with both an "ASPIRIN-STARTED" event and an "ANTIPLATELET-STARTED" event
 
 <figure class="two-column">
 <figcaption>Figure 3. Analysis A</figcaption>
-<img class="a" src="https://rw251.github.io/process-mining/images/aspirin_before_ap_both_mandatory.png" />
+<img class="a" src="images/aspirin_before_ap_both_mandatory.png" />
 </figure>
 
 <figure class="two-column">
 <figcaption>Figure 4. Analysis B</figcaption>
-<img class="a" src="https://rw251.github.io/process-mining/images/ap_before_aspirin_both_mandatory.png" />
+<img class="a" src="images/ap_before_aspirin_both_mandatory.png" />
 </figure>
 
 ### 1.3. Thoughts and questions
