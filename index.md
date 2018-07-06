@@ -1,5 +1,5 @@
 <style>
-	html,body { font-family: sans-serif; }	
+	html,body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }	
 	body { width:976px; margin-left:auto; margin-right:auto; }	
 	.a { width: 100%; border: thin #c0c0c0 solid; background-image: radial-gradient(black, white); min-height: 200px; }	
 	* { clear: both; }
@@ -11,17 +11,21 @@
 
 ## 1 Aspirin + Antiplatelet must have Gastro Protection medication
 
-### 1.1 Method
+### 1.1 Overview
 
-- Extracted all prescriptions for aspirin, other antiplatelets (clopidogrel, ticagrelor, prasugrel), and gastro protective medication (H2 antagonists and proton pump inhibitors).
-- Collapsed prescriptions into STARTED and STOPPED events based on dose, instruction and packet size (e.g. if given 30 pills and the instruction of "take 2 daily" then we assume the drug is stopped 15 days after initiation unless a subsequent prescription is found in the record.)
+One of the indicators in our SMASH dashboard looks for patients who are currently prescribed aspirin and at least one other antiplatelet, but who are not currently prescribed a gasto-protective (GP) medication. I picked this indicator because it has more events (3 start and 3 stop for each drug) than some of the other indicators. It also has multiple options - the pharmacist or GP can chose to stop an existing medication or start a new one.
+
+### 1.2 Method
+
+- I extracted all prescriptions for aspirin, other antiplatelets (clopidogrel, ticagrelor, prasugrel), and gastro protective medication (H2 antagonists and proton pump inhibitors).
+- Collapsed the prescriptions into STARTED and STOPPED events based on dose, instruction and packet size (e.g. if given 30 pills and the instruction of "take 2 daily" then we assume the drug is stopped 15 days after initiation unless a subsequent prescription is found in the record.) This uses methodology from my previous publication on this^1^.
 - Load data into Disco
-- Filter to just those paths that start with "ASPIRIN-STARTED" or "ANTIPLATELET-STARTED" on the basis that patients who initiated a GP drug for a different reason aren't really following the same process
+- Filtered to just those paths that start with "ASPIRIN-STARTED" or "ANTIPLATELET-STARTED" on the basis that patients who initiated a GP drug for a different reason aren't really following the same process
 - We only have dates - the time always defaults to 4am. So to avoid concurrent events I have added 1 hour to every gasto-protection prescription as it makes sense to prescribe this after the antiplatelets. I then analysed the data twice: in *analysis A* I subtracted 1 hour from all aspirin prescriptions, and in *analysis B* I substracted 1 hour from all antiplatelet prescriptions.
 
-### 1.2 Output
+### 1.3 Output
 
-#### 1.2.1 Initial output process maps
+#### 1.3.1 Initial output process maps
 
 <figure class="two-column">
 <figcaption>Figure 1. Analysis A (aspirin before antiplatelet when concurrent)</figcaption>
@@ -33,7 +37,7 @@
 <img class="a" src="images/ap_before_aspirin.png" />
 </figure>
 
-#### 1.2.1 Filter to pathways with both an "ASPIRIN-STARTED" event and an "ANTIPLATELET-STARTED" event
+#### 1.3.1 Filter to pathways with both an "ASPIRIN-STARTED" event and an "ANTIPLATELET-STARTED" event
 
 <figure class="two-column">
 <figcaption>Figure 3. Analysis A</figcaption>
@@ -45,7 +49,7 @@
 <img class="a" src="images/ap_before_aspirin_both_mandatory.png" />
 </figure>
 
-### 1.3. Thoughts and questions
+### 1.4 Thoughts and questions
 
 - Figure 1 
 	- Lots of people are starting a GP after aspirin. These people probably have some other reason why they need gasto-protection e.g. they're also on Warfarin or have a history of internal bleeds / ulcers. In fact our medication dashboard has all of the following groups of patients who should have a GP:
@@ -60,5 +64,6 @@
 - Figures x/y/z
 	- These process maps have routes that don't terminate e.g. you get stuck in a loop and can't get to the "STOP" node. I guess this is ok and is just trying to prevent spaghetti, but ***is it possible within Disco (or a different tool) to say something like "only show the top 60% of paths but include all paths from the START node and to the END node"?***
 		
+### 2 References
 
-
+1. Williams R, Brown B, Peek N, Buchan I., “Making Medication Data Meaningful: Illustrated with Hypertension,” Stud. Health Technol. Inform., vol. 228, pp. 247–51, 2016.
