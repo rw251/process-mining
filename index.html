@@ -41,28 +41,37 @@ td, h1, h2, h3, h4, h5, p, ul, ol, li {
       <img class="a" src="images/aspirin_before_ap.png" />
     </figure>
     <figure class="two-column">
-      <figcaption>Figure 2. Analysis B  (antiplatelet before aspirin when concurrent)</figcaption>
+      <figcaption>Figure 2. Analysis B (antiplatelet before aspirin when concurrent)</figcaption>
       <img class="a" src="images/ap_before_aspirin.png" />
     </figure>
-    <h4 id="filter-to-pathways-with-both-an-aspirin-started-event-and-an-antiplatelet-started-event">1.3.1 Filter to pathways with both an "ASPIRIN-STARTED" event and an "ANTIPLATELET-STARTED" event</h4>
+    <h4 id="filter-to-pathways-with-both-an-aspirin-started-event-and-an-antiplatelet-started-event">1.3.2 Filter to pathways with both an "ASPIRIN-STARTED" event and an "ANTIPLATELET-STARTED" event</h4>
     <p>The following figures are just those cases that have both aspirin and another antiplatelet prescribed at any time as this more closely reflects the patients who appear in the dashboard.</p>
     <figure class="two-column">
-      <figcaption>Figure 3. Analysis A</figcaption>
+      <figcaption>Figure 3. Analysis A (aspirin before antiplatelet when concurrent)</figcaption>
       <img class="a" src="images/aspirin_before_ap_both_mandatory.png" />
     </figure>
     <figure class="two-column">
-      <figcaption>Figure 4. Analysis B</figcaption>
+      <figcaption>Figure 4. Analysis B (antiplatelet before aspirin when concurrent)</figcaption>
       <img class="a" src="images/ap_before_aspirin_both_mandatory.png" />
+    </figure>
+    <h4 id="filter-to-pathways-with-an-aspirin-started-event-immediately-before-an-antiplatelet-started-event">1.3.3 Filter to pathways with an "ASPIRIN-STARTED" event immediately before an "ANTIPLATELET-STARTED" event</h4>
+    <figure class="two-column">
+      <figcaption>Figure 5. Analysis A (aspirin before antiplatelet when concurrent)</figcaption>
+      <img class="a" src="images/ASP_before_AP_and_aspirin_immediately_before_ap.png" />
+    </figure>
+    <figure class="two-column">
+      <figcaption>Figure 6. Analysis B (antiplatelet before aspirin when concurrent)</figcaption>
+      <img class="a" src="images/AP_before_ASP_andaspirin_immediately_before_ap.png" />
     </figure>
     <h3 id="thoughts-and-questions">1.4 Thoughts and questions</h3>
     <ul>
+      <li>Timeshift: I think I can justify why I shift GP meds back in time, but I'm less sure as to whether aspirin or antiplatelets should be prescribed first. I'm thinking of doing something akin to a sensitivity analysis whereby I repeat the analysis under different assumptions. <em><strong>Is this something that others have done with process mining - or if not does it sound a reasonable approach?</strong></em></li>
       <li>Figure 1
 <ul><li>Lots of people are starting a GP after aspirin. These people probably have some other reason why they need gasto-protection e.g. they're also on Warfarin or have a history of internal bleeds / ulcers. In fact our medication dashboard has all of the following groups of patients who should have a GP:
 <ul><li>Age &gt;65 + NSAID</li><li>Aspirin + Antiplatelet</li><li>History of bleeds + Antiplatelet (including aspirin)</li><li>History of bleeds + NSAID</li><li>Warfarin + Antiplatelet (including aspirin)</li></ul></li><li><em><strong>Perhaps I should look at a combined pathway including NSAID, antiplatelets, aspirin, warfarin and bleed history which might help find the interactions in patients with multiple morbidities?</strong></em></li></ul></li>
-      <li>Figure 2
-<ul><li>I find it a bit annoying that there is a path from the start to the end that just includes ASPIRIN-STOPPED. If I set the path inclusion to 100% then this disappears as it isn't valid (it always comes after ASPIRIN-STARTED). <em><strong>Is there a way to deal with this situation?</strong></em></li></ul></li>
-      <li>Figures x/y/z
-<ul><li>These process maps have routes that don't terminate e.g. you get stuck in a loop and can't get to the "STOP" node. I guess this is ok and is just trying to prevent spaghetti, but <em><strong>is it possible within Disco (or a different tool) to say something like "only show the top 60% of paths but include all paths from the START node and to the END node"?</strong></em></li></ul></li>
+      <li>Manual editing of process map: These process maps have routes that don't terminate e.g. you get stuck in a loop and can't get to the "STOP" node. I guess this is ok and is just trying to prevent spaghetti, but <em><strong>is it possible within Disco (or a different tool) to say something like "only show the top 60% of paths but always include all paths from the START node and all paths to the END node"?</strong></em> Maybe for maps with not many nodes like this I should just include all paths.</li>
+      <li>Minor annoyances:
+<ul><li>Is there a way to save a project (currently I try to open a new one then save when it warns I have unsaved changes but there must be a better way)</li></ul></li>
     </ul>
     <h3 id="references">2 References</h3>
     <ol>
