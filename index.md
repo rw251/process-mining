@@ -75,6 +75,7 @@ The following figures are just those cases that have both aspirin and another an
 		- Warfarin + Antiplatelet (including aspirin)
 	- ***Perhaps I should look at a combined pathway including NSAID, antiplatelets, aspirin, warfarin and bleed history which might help find the interactions in patients with multiple morbidities?***
 - Manual editing of process map: These process maps have routes that don't terminate e.g. you get stuck in a loop and can't get to the "STOP" node. I guess this is ok and is just trying to prevent spaghetti, but ***is it possible within Disco (or a different tool) to say something like "only show the top 60% of paths but always include all paths from the START node and all paths to the END node"?*** Maybe for maps with not many nodes like this I should just include all paths.
+- Figures 5 & 6: These are starting to look ok in that we can see the key decision that is taken after an antiplatelet is started - e.g. either a GP is started or the antiplatelet or the aspirin is stopped. ***This is maybe stepping on your PSTRC toes Owen but I could look at how this process has changed before and after SMASH was implemented.***
 - Minor annoyances:
 	- Is there a way to save a project (currently I try to open a new one then save when it warns I have unsaved changes but there must be a better way)
 		
