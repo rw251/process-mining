@@ -39,6 +39,8 @@ One of the indicators in our SMASH dashboard looks for patients who are currentl
 
 #### 1.3.1 Filter to pathways with both an "ASPIRIN-STARTED" event and an "ANTIPLATELET-STARTED" event
 
+The following figures are just those cases that have both aspirin and another antiplatelet prescribed at any time as this more closely reflects the patients who appear in the dashboard.
+
 <figure class="two-column">
 <figcaption>Figure 3. Analysis A</figcaption>
 <img class="a" src="images/aspirin_before_ap_both_mandatory.png" />
