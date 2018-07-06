@@ -33,26 +33,39 @@ One of the indicators in our SMASH dashboard looks for patients who are currentl
 </figure>
 
 <figure class="two-column">
-<figcaption>Figure 2. Analysis B  (antiplatelet before aspirin when concurrent)</figcaption>
+<figcaption>Figure 2. Analysis B (antiplatelet before aspirin when concurrent)</figcaption>
 <img class="a" src="images/ap_before_aspirin.png" />
 </figure>
 
-#### 1.3.1 Filter to pathways with both an "ASPIRIN-STARTED" event and an "ANTIPLATELET-STARTED" event
+#### 1.3.2 Filter to pathways with both an "ASPIRIN-STARTED" event and an "ANTIPLATELET-STARTED" event
 
 The following figures are just those cases that have both aspirin and another antiplatelet prescribed at any time as this more closely reflects the patients who appear in the dashboard.
 
 <figure class="two-column">
-<figcaption>Figure 3. Analysis A</figcaption>
+<figcaption>Figure 3. Analysis A (aspirin before antiplatelet when concurrent)</figcaption>
 <img class="a" src="images/aspirin_before_ap_both_mandatory.png" />
 </figure>
 
 <figure class="two-column">
-<figcaption>Figure 4. Analysis B</figcaption>
+<figcaption>Figure 4. Analysis B (antiplatelet before aspirin when concurrent)</figcaption>
 <img class="a" src="images/ap_before_aspirin_both_mandatory.png" />
+</figure>
+
+#### 1.3.3 Filter to pathways with an "ASPIRIN-STARTED" event immediately before an "ANTIPLATELET-STARTED" event
+
+<figure class="two-column">
+<figcaption>Figure 5. Analysis A (aspirin before antiplatelet when concurrent)</figcaption>
+<img class="a" src="images/ASP_before_AP_and_aspirin_immediately_before_ap.png" />
+</figure>
+
+<figure class="two-column">
+<figcaption>Figure 6. Analysis B (antiplatelet before aspirin when concurrent)</figcaption>
+<img class="a" src="images/AP_before_ASP_andaspirin_immediately_before_ap.png" />
 </figure>
 
 ### 1.4 Thoughts and questions
 
+- Timeshift: I think I can justify why I shift GP meds back in time, but I'm less sure as to whether aspirin or antiplatelets should be prescribed first. I'm thinking of doing something akin to a sensitivity analysis whereby I repeat the analysis under different assumptions. ***Is this something that others have done with process mining - or if not does it sound a reasonable approach?***
 - Figure 1 
 	- Lots of people are starting a GP after aspirin. These people probably have some other reason why they need gasto-protection e.g. they're also on Warfarin or have a history of internal bleeds / ulcers. In fact our medication dashboard has all of the following groups of patients who should have a GP:
 		- Age >65 + NSAID
@@ -61,10 +74,9 @@ The following figures are just those cases that have both aspirin and another an
 		- History of bleeds + NSAID
 		- Warfarin + Antiplatelet (including aspirin)
 	- ***Perhaps I should look at a combined pathway including NSAID, antiplatelets, aspirin, warfarin and bleed history which might help find the interactions in patients with multiple morbidities?***
-- Figure 2
-	- I find it a bit annoying that there is a path from the start to the end that just includes ASPIRIN-STOPPED. If I set the path inclusion to 100% then this disappears as it isn't valid (it always comes after ASPIRIN-STARTED). ***Is there a way to deal with this situation?***
-- Figures x/y/z
-	- These process maps have routes that don't terminate e.g. you get stuck in a loop and can't get to the "STOP" node. I guess this is ok and is just trying to prevent spaghetti, but ***is it possible within Disco (or a different tool) to say something like "only show the top 60% of paths but include all paths from the START node and to the END node"?***
+- Manual editing of process map: These process maps have routes that don't terminate e.g. you get stuck in a loop and can't get to the "STOP" node. I guess this is ok and is just trying to prevent spaghetti, but ***is it possible within Disco (or a different tool) to say something like "only show the top 60% of paths but always include all paths from the START node and all paths to the END node"?*** Maybe for maps with not many nodes like this I should just include all paths.
+- Minor annoyances:
+	- Is there a way to save a project (currently I try to open a new one then save when it warns I have unsaved changes but there must be a better way)
 		
 ### 2 References
 
